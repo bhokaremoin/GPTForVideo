@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhokaremoin/GPTForVideo.git"
+  },
+  "author": "Moin Bhokare",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhokaremoin/GPTForVideo/issues"
+  },
+  "homepage": "https://github.com/bhokaremoin/GPTForVideo#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "@pinecone-database/pinecone": "^0.0.12",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "langchain": "^0.0.56",
+    "mongodb": "^5.2.0",
+    "mongoose": "^7.0.3",
+    "nodemon": "^2.0.22",
+    "openai": "^3.2.1",
+    "pinecone-client": "^1.1.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "ytdl-core": "^4.11.5"
+  }
+}
