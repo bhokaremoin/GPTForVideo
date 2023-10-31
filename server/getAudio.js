@@ -27,5 +27,5 @@ async function getAudio(videoUrl) {
       .run();
   });
 }
-getAudio();
+// getAudio();
 module.exports = getAudio;

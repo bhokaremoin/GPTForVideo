@@ -27,5 +27,5 @@ async function compressAudio() {
       .run();
   });
 }
-compressAudio();
+// compressAudio();
 module.exports = compressAudio;

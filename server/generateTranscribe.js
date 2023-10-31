@@ -1,6 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
-const TranscribeData = require("../models/TranscribeData");
 async function speechToText(key) {
   const configuration = new Configuration({
     apiKey: key,
