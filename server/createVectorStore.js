@@ -5,7 +5,6 @@ const RecursiveCharacterTextSplitter =
 const Document = require("langchain/document").Document;
 const OpenAIEmbeddings =
   require("langchain/embeddings/openai").OpenAIEmbeddings;
-const TranscribeData = require("../models/TranscribeData");
 
 const createVectorStore = async (props) => {
   return new Promise(async (resolve, reject) => {
@@ -16,15 +15,7 @@ const createVectorStore = async (props) => {
     });
     const pineconeIndex = pinecone.Index(props.pinecone_index);
     try {
-      const name = "transcribe";
-      let res = await TranscribeData.findOne({ name });
-      if (!res) {
-        console.log("Please Upload the Transcribe to MongoDB");
-        console.log("Run getTranscribe.js File");
-        return;
-      }
-      console.log("Transcribe Received Successfully");
-      var data = res.transcribe;
+      var data = {};
       const splitter = new RecursiveCharacterTextSplitter({
         chunkSize: 100,
         chunkOverlap: 1,
