@@ -3,9 +3,9 @@ const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 const ffmpeg = require("fluent-ffmpeg");
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-const videoUrl = "https://www.youtube.com/watch?v=oL1uem6-3m4";
+// const videoUrl = "https://www.youtube.com/watch?v=oL1uem6-3m4";
 
-async function getAudio() {
+async function getAudio(videoUrl) {
   const videoStream = ytdl(videoUrl, {
     quality: "highestaudio",
     filter: "audioonly",

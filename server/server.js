@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 5000;
-const mongoDB = require("./database.js");
-mongoDB(true);
+// const mongoDB = require("./database.js");
+// mongoDB(true);
 app.use((req, res, next) => {
-  // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://askgpt-ize0.onrender.com"
-  );
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  // res.setHeader(
+  //   "Access-Control-Allow-Origin",
+  //   "https://askgpt-ize0.onrender.com"
+  // );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type,Accept"
