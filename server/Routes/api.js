@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+require("dotenv").config();
 const getAudio = require("../getAudio");
 const compressAudio = require("../compressAudio");
 const generateTranscribe = require("../generateTranscribe");
