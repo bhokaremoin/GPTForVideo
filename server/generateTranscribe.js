@@ -15,7 +15,7 @@ async function generateTranscribe(props) {
   return new Promise(async (resolve, reject) => {
     const jsonContent = await speechToText(props.openai_api_key);
     const jsonString = JSON.stringify(jsonContent);
-    fs.writeFile("transcriptSetup/transcript.txt", jsonString, function (err) {
+    fs.writeFile("transcript.txt", jsonString, function (err) {
       if (err) {
         console.log("An error occured while writing JSON Object to File.");
         reject();

@@ -12,12 +12,13 @@ const props = {
   pinecone_env: process.env.PINECONE_ENV,
   pinecone_index: process.env.PINECONE_INDEX,
 };
+// console.log(props);
 router.post("/setup", async (req, res) => {
   console.log("API HIT");
   let youtubeURL = req.body.url;
   try {
-    await getAudio(youtubeURL);
-    await compressAudio();
+    // await getAudio(youtubeURL);
+    // await compressAudio();
     await generateTranscribe(props);
     await createVectorStore(props);
     console.log("Transcript setup Completed !!");
