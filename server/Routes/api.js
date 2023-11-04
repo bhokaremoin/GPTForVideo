@@ -5,23 +5,20 @@ const getAudio = require("../getAudio");
 const compressAudio = require("../compressAudio");
 const generateTranscribe = require("../generateTranscribe");
 const getAnswer = require("../getAnswer");
-
-const props = {
-  openai_api_key: process.env.OPENAI_API_KEY,
-  pinecone_api_key: process.env.PINECONE_API_KEY,
-  pinecone_env: process.env.PINECONE_ENV,
-  pinecone_index: process.env.PINECONE_INDEX,
-};
+const createVectorStore = require("../createVectorStore");
 // console.log(props);
 router.post("/setup", async (req, res) => {
   console.log("API HIT");
   let youtubeURL = req.body.url;
   try {
     // await getAudio(youtubeURL);
+    // console.log("Video Downloaded Successfully !!");
     // await compressAudio();
-    await generateTranscribe(props);
-    await createVectorStore(props);
-    console.log("Transcript setup Completed !!");
+    // console.log("Video to Audio Converted Successfully !!");
+    // await generateTranscribe(props);
+    // console.log("Audio to Text Converted" Successfully !!");
+    await createVectorStore();
+    // console.log("Vector Store Created Successfully !!");
     res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
