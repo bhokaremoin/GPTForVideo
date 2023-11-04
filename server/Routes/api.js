@@ -6,19 +6,14 @@ const compressAudio = require("../compressAudio");
 const generateTranscribe = require("../generateTranscribe");
 const getAnswer = require("../getAnswer");
 const createVectorStore = require("../createVectorStore");
-// console.log(props);
 router.post("/setup", async (req, res) => {
   console.log("API HIT");
   let youtubeURL = req.body.url;
+  console.log(youtubeURL);
   try {
-    // await getAudio(youtubeURL);
-    // console.log("Video Downloaded Successfully !!");
-    // await compressAudio();
-    // console.log("Video to Audio Converted Successfully !!");
-    // await generateTranscribe(props);
-    // console.log("Audio to Text Converted" Successfully !!");
+    await getAudio(youtubeURL);
+    await compressAudio();
     await createVectorStore();
-    // console.log("Vector Store Created Successfully !!");
     res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);

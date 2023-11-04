@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Header = () => {
   const [link, setLink] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const handleLinkChange = (event) => {
     setLink(event.target.value);
   };
@@ -11,15 +11,14 @@ const Header = () => {
     setLoading(true);
     e.preventDefault();
     // console.log(link);
-    if(link===""){
+    if (link === "") {
       alert("Please enter a valid link");
       setLoading(false);
-      return
+      return;
     }
-    try{
-      await axios.post("http://localhost:5000/api/setup",link);
-
-    }catch(err){
+    try {
+      await axios.post("http://localhost:5000/api/setup", { url: link });
+    } catch (err) {
       console.log(err.message);
     }
     setLoading(false);
@@ -46,7 +45,7 @@ const Header = () => {
             type="submit"
             className="bg-white p-3 rounded-md px-4 -ml-52 mr-5 mt-4 shadow-lg shadow-black cursor-pointer"
           >
-            {loading?"loading...":"Generate"}
+            {loading ? "loading..." : "Generate"}
           </button>
         </form>
         {/* <div className="bg-white p-3 rounded-md px-4 mt-4 shadow-lg shadow-black">Upload Video</div> */}

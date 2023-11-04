@@ -6,7 +6,6 @@ const Document = require("langchain/document").Document;
 const OpenAIEmbeddings =
   require("langchain/embeddings/openai").OpenAIEmbeddings;
 require("dotenv").config();
-
 const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
 const props = {
@@ -29,10 +28,8 @@ async function speechToText(key) {
   console.log("Api response recieved");
   return resp.data.text;
 }
-
 const createVectorStore = async () => {
   return new Promise(async (resolve, reject) => {
-    // ----
     console.log("createVectorStore Function called");
     const jsonContent = await speechToText(props.openai_api_key);
     const jsonString = JSON.stringify(jsonContent);
@@ -45,15 +42,11 @@ const createVectorStore = async () => {
       }
       console.log("JSON file has been saved.");
     });
-
-    // Vector Store Creation
     const pinecone = new PineconeClient();
     await pinecone.init({
       apiKey: props.pinecone_api_key,
       environment: props.pinecone_env,
     });
-
-    //index
     const pineconeIndex = pinecone.Index(props.pinecone_index);
     console.log("PineCone setup");
     try {
