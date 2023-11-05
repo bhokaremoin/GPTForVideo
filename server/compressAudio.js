@@ -4,8 +4,8 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 async function compressAudio() {
   return new Promise((resolve, reject) => {
     console.log("Audio Compressing....");
-    const inputFile = "audio.mp3";
-    const outputFile = "compressedAudio.mp3";
+    const inputFile = "audio1.mp3";
+    const outputFile = "compressedAudio1.mp3";
     const command = ffmpeg();
     command.input(inputFile);
     // Set the audio codec to libmp3lame

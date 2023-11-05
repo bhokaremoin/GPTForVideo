@@ -13,7 +13,7 @@ async function getAudio(videoUrl) {
   return new Promise((resolve, reject) => {
     ffmpeg(videoStream)
       .toFormat("mp3")
-      .saveToFile("audio.mp3", (stdout, stderr) => {})
+      .saveToFile("audio1.mp3", (stdout, stderr) => {})
       .on("end", () => {
         console.log("Finished converting video to MP3!");
         resolve();

@@ -10,8 +10,8 @@ router.post("/setup", async (req, res) => {
   let youtubeURL = req.body.url;
   console.log(youtubeURL);
   try {
-    // await getAudio(youtubeURL);
-    // await compressAudio();
+    await getAudio(youtubeURL);
+    await compressAudio();
     await createVectorStore();
     res.status(200).json({ success: true });
   } catch (error) {
