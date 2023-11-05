@@ -5,16 +5,19 @@ import Footer from "../Components/Footer";
 // import Loader from "../Components/Loader";
 
 const Home = () => {
-  const [loading, setLoading] = useState(false)
-  const [isLinkSubmitted, setIsLinkSubmitted] = useState(false)
-  
+  const [loading, setLoading] = useState(false);
+  const [isLinkSubmitted, setIsLinkSubmitted] = useState(false);
+
   return (
-    <div className="snap-none h-screen" >
-      
-      <Header setLoading={setLoading} setIsLinkSubmitted={setIsLinkSubmitted}/>
+    <div className="snap-none h-screen w-full">
+      <Header setLoading={setLoading} setIsLinkSubmitted={setIsLinkSubmitted} />
       {/* <hr/> */}
       {/* <Body /> */}
-      <Footer loading= {loading} setLoading={setLoading} isLinkSubmitted={isLinkSubmitted}/>
+      <Footer
+        loading={loading}
+        setLoading={setLoading}
+        isLinkSubmitted={isLinkSubmitted}
+      />
     </div>
   );
 };

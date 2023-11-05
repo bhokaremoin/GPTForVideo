@@ -2,6 +2,10 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
+    fontFamily: {
+      'courier': ['Courier Prime', 'monospace'],
+      'comic': ['Comic Neue', 'cursive'],
+    },
     extend: {
       backgroundColor: {
         'dark-gray': 'rgb(49, 51, 57)',
