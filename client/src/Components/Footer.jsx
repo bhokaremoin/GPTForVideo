@@ -3,15 +3,16 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import PendingIcon from "@mui/icons-material/Pending";
 import Body from "./Body";
 import axios from "axios";
-const Footer = () => {
+import Loader from "./Loader";
+const Footer = ({ loading, setLoading ,isLinkSubmitted }) => {
   const [question, setQuestion] = useState("");
   const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const handleChangeQuestion = (e) => {
     setQuestion(e.target.value);
   };
   const handleSubmit = async (e) => {
-    setLoading(true);
+    setLoading1(true);
     e.preventDefault();
     if (question === "") {
       alert("Enter a question");
@@ -27,35 +28,40 @@ const Footer = () => {
     } catch (err) {
       console.log(err.message);
     }
-    setLoading(false);
+    setLoading1(false);
   };
   return (
     <>
+      {loading && <Loader message="Processing Video..." />}
       <Body history={history} />
-      <div className="bg-dark-gray py-5 flex">
-        <div className="items-center justify-center w-full ">
-          <form className="w-full flex items-center" onSubmit={handleSubmit}>
-            <label className="w-full pl-40">
+      <div className="bg-dark-gray py-5 flex h-1/5">
+        <div className="items-center justify-center w-full">
+          <form
+            className="w-full flex items-center"
+            onSubmit={handleSubmit}
+            autoComplete="off"
+          >
+            <div className="w-11/12 flex justify-center items-center">
               <input
                 type="text"
                 value={question}
                 name="question"
                 id="question"
                 onChange={handleChangeQuestion}
-                className="mt-5 rounded-lg w-3/4 ml-20 border-none outline-none pl-5 bg-gray-200 py-4 pr-16 "
+                className="mt-5 rounded-lg w-3/4 ml-20 border-none outline-none pl-5 bg-gray-200 py-4 pr-20"
                 placeholder="Ask your Question"
+                disabled={isLinkSubmitted?false:true}
               />
-            </label>
-            <button
-              className="p-2 bg-black rounded-full mt-5 -ml-64 cursor-pointer"
-              type="submit"
-            >
-              {loading ? (
-                <PendingIcon className="text-white" />
-              ) : (
-                <TelegramIcon className="text-white" />
-              )}
-            </button>
+              <div className="bg-black rounded-full p-2 -ml-16 mt-5">
+                <button className=" cursor-pointer " type="submit">
+                  {loading1 ? (
+                    <PendingIcon className="text-white" />
+                  ) : (
+                    <TelegramIcon className="text-white" />
+                  )}
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
