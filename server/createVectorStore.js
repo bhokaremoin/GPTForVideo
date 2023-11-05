@@ -31,22 +31,34 @@ async function speechToText(key) {
 const createVectorStore = async () => {
   return new Promise(async (resolve, reject) => {
     console.log("createVectorStore Function called");
-    const jsonContent = await speechToText(props.openai_api_key);
-    const jsonString = JSON.stringify(jsonContent);
-    console.log("Transcribe JSON Ready");
-    fs.writeFile("transcript.txt", jsonString, function (err) {
-      if (err) {
-        console.log("An error occured while writing JSON Object to File.");
-        reject();
-        return console.log(err);
-      }
-      console.log("JSON file has been saved.");
-    });
+    // const jsonContent = await speechToText(props.openai_api_key);
+    // const jsonString = JSON.stringify(jsonContent);
+    // console.log("Transcribe JSON Ready");
+    // fs.writeFile("transcript.txt", jsonString, function (err) {
+    //   if (err) {
+    //     console.log("An error occured while writing JSON Object to File.");
+    //     reject();
+    //     return console.log(err);
+    //   }
+    //   console.log("JSON file has been saved.");
+    // });
     const pinecone = new PineconeClient();
     await pinecone.init({
       apiKey: props.pinecone_api_key,
       environment: props.pinecone_env,
     });
+
+    //
+    console.log(props.pinecone_index);
+    await pinecone.deleteIndex(props.pinecone_index);
+    await pinecone.createIndex({
+      name: props.pinecone_index,
+      dimension: 1536,
+      metric: "cosine",
+      pods: 4,
+      podType: "s1.x1",
+    });
+    //
     const pineconeIndex = pinecone.Index(props.pinecone_index);
     console.log("PineCone setup");
     try {
