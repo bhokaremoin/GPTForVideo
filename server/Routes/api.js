@@ -1,26 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
+require("dotenv").config();
 const getAudio = require("../getAudio");
 const compressAudio = require("../compressAudio");
-const generateTranscribe = require("../generateTranscribe");
 const getAnswer = require("../getAnswer");
-
-const props = {
-  openai_api_key: process.env.OPENAI_API_KEY,
-  pinecone_api_key: process.env.PINECONE_API_KEY,
-  pinecone_env: process.env.PINECONE_ENV,
-  pinecone_index: process.env.PINECONE_INDEX,
-};
+const createVectorStore = require("../createVectorStore");
 router.post("/setup", async (req, res) => {
   console.log("API HIT");
   let youtubeURL = req.body.url;
+  console.log(youtubeURL);
   try {
-    await getAudio(youtubeURL);
-    await compressAudio();
-    await generateTranscribe(props);
-    await createVectorStore(props);
-    console.log("Transcript setup Completed !!");
+    // await getAudio(youtubeURL);
+    // await compressAudio();
+    await createVectorStore();
     res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
