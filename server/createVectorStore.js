@@ -8,11 +8,13 @@ const OpenAIEmbeddings =
 require("dotenv").config();
 const { Configuration, OpenAIApi } = require("openai");
 const fs = require("fs");
+const axios = require("axios");
 const props = {
   openai_api_key: process.env.OPENAI_API_KEY,
   pinecone_api_key: process.env.PINECONE_API_KEY,
   pinecone_env: process.env.PINECONE_ENV,
   pinecone_index: process.env.PINECONE_INDEX,
+  pinecone_delete: process.env.PINECONE_DELETE,
 };
 async function speechToText(key) {
   console.log("speech to Text function called");
@@ -33,6 +35,7 @@ const createVectorStore = async () => {
     console.log("createVectorStore Function called");
     const jsonContent = await speechToText(props.openai_api_key);
     const jsonString = JSON.stringify(jsonContent);
+    // const jsonString = "This is moin";
     console.log("Transcribe JSON Ready");
     fs.writeFile("transcript.txt", jsonString, function (err) {
       if (err) {
@@ -48,6 +51,12 @@ const createVectorStore = async () => {
       environment: props.pinecone_env,
     });
     const pineconeIndex = pinecone.Index(props.pinecone_index);
+    await pineconeIndex._delete({
+      deleteRequest: {
+        deleteAll: true,
+      },
+    });
+    //
     console.log("PineCone setup");
     try {
       var data = jsonString;
